@@ -21,10 +21,17 @@
 
 
 TEAM_NAME="JDCTeam"
-TARGET=jflte
+
+if [[ $1 == "lt03lte" ]]
+then
+	TARGET=$1
+else
+	TARGET=jflte
+fi
+
 LOS_VER=17.1
 VERSION_BRANCH=opt-cm-17.1
-OUT="out/target/product/jflte"
+OUT="out/target/product/$TARGET"
 ROM_VERSION=6
 export ANDROID_HOME=~/Android/Sdk
 
@@ -150,7 +157,7 @@ anythingElse() {
     echo "Anything else?"
     select more in "Yes" "No"; do
         case $more in
-            Yes ) bash build.sh; break;;
+            Yes ) bash build.sh $TARGET; break;;
             No ) exit 0; break;;
         esac
     done ;
